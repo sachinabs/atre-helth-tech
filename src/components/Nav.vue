@@ -15,11 +15,7 @@
 
         </div>
     </div>
-    <div class="left-navigation">
-        <router-link class="nav" to="/">Random Joke</router-link>
-        <router-link class="nav" to="/facts">Number Facts</router-link>
-        <router-link class="nav" to="/marval">Marvel Quote</router-link>
-    </div>
+   
 
 
 </template>
@@ -46,7 +42,7 @@ export default {
     display: flex;
     align-items: center;
     background: #FFFFFF;
-    border: 0.5px solid #AFA7A7;
+    border: 0.5px solid #afa7a73f;
 }
 
 .logoBox {
@@ -100,8 +96,4 @@ export default {
     position: absolute;
 }
 
-
-.left-navigation {
-    width: 81px;
-}
 </style>

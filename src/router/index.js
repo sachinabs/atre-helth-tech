@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Facts from '../views/Facts.vue'
-import Marval from '../views/MarvalQuote.vue'
+import Dashboard from '../views/HomeView.vue'
+import History from '../views/History.vue'
+import Chat from '../views/Chat.vue'
+import DetailsOfPatients from '../views/DetailsOfPatients.vue'
+import Calling from '../views/Calling.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,17 +11,27 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: Dashboard
     },
     {
-      path: '/facts',
-      name: 'fact',
-      component: Facts
+      path: '/history',
+      name: 'History',
+      component: History
     },
     {
-      path: '/marval',
-      name: 'marval',
-      component: Marval
+      path: '/chat',
+      name: 'Chat',
+      component: Chat
+    },
+    {
+      path: '/user/:userId',
+      name: 'details',
+      component: DetailsOfPatients
+    },
+    {
+      path: '/call',
+      name: 'call',
+      component: Calling
     },
     {
       path: '/about',

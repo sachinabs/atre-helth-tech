@@ -1,29 +1,48 @@
 <template>
-  <div class="joke-container">
-    <div class="box">
-      <div class="joke-division">
-        <span class="type">Type : {{ this.categories }} </span>
-        <h3 class="question">{{ this.question }}</h3>
-        <h4 class="punchline">
-          {{ this.punchline }} </h4>
-        <div class="btn">
-          <button class="nextbtn" @click="bringData">Next</button>
-        </div>
+
+  <div class="dashboard-container animate__animated   animate__slideInUp">
+
+    <div class="dashboard-main-view">
+      <div class="tab-title">
+        <span class="tab-main-title">Dashboard </span>
+      </div>
+      <div class="tabs">
+        <span class="sub-tab-title">Appointments </span>
+        <span class="sub-tab-title disabled">Patients List </span>
+      </div>
+      <div class="line-container">
+        <span class="selected-tab"> </span>
+        <span class="line"><img src="../assets/icons/Line 1.svg" alt=""></span>
+      </div>
+
+      <div class="data-titles">
+        <span class="info-title">Basic info</span>
+        <span class="info-title">Patient Id</span>
+        <span class="info-title">Location</span>
+        <span class="info-title">Appointment Time</span>
+      </div>
+      <div class="patient-details-comp">
+        <ul>
+          <li v-for="index in 10" :key="index">
+            <router-link :to="'user/' + key">
+              <PatientDetails />
+            </router-link>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 </template>
 
 <script >
-import { UserService } from "../services/services"
+
+import PatientDetails from '../components/widgets/PatientsDetails.vue'
 
 export default {
-  name: "RandomJoke",
+  name: "Dashboard",
   data: function () { //sate data
     return {
-      categories: "",
-      question: "",
-      punchline: ""
+
     };
   },
   props: { //get the value through the props from another component
@@ -31,117 +50,167 @@ export default {
   },
   methods: { // functions for the component
     bringData: async function () {
-      try {
-        let joke = await UserService.getJokes()
-        const randomNumber = Math.floor(Math.random() * 376) + 1
-        this.punchline = joke.data[randomNumber].punchline;
-        this.question = joke.data[randomNumber].setup;
-        this.categories = joke.data[randomNumber].type;
-      } catch (error) {
-        console.log("catch" + error);
-      }
+
     }
 
   },
-  created: async function () {
-    try {
-      let joke = await UserService.getJokes()
-      const randomNumber = Math.floor(Math.random() * 376) + 1
-      this.punchline = joke.data[randomNumber].punchline;
-      this.question = joke.data[randomNumber].setup;
-      this.categories = joke.data[randomNumber].type;
-    } catch (error) {
-      console.log("catch" + error);
-    }
+  created: function () {
+
+  },
+  components: {
+    PatientDetails
   }
 };
 </script>
 
 
 <style>
-.joke-container {
-  display: flex;
-  height: calc(100vh - 100px);
-  justify-content: center;
-  align-items: center;
-  background: #F5F5F5;
+body {
+  overflow-x: hidden;
 }
 
-.box {
-  width: 861px;
-  height: 468px;
-  background: #FFFFFF;
-  border: 1px solid rgba(239, 239, 239, 0.44);
-  box-shadow: 34px 72px 32px rgba(194, 194, 194, 0.02), 19px 40px 27px rgba(194, 194, 194, 0.08), 9px 18px 20px rgba(194, 194, 194, 0.13), 2px 4px 11px rgba(194, 194, 194, 0.15), 0px 0px 0px rgba(194, 194, 194, 0.15);
-  border-radius: 10px;
+.dashboard-container {
   display: flex;
-  justify-content: center;
+  height: calc(100vh - 81px);
+  width: calc(100vw - 83px);
+
   align-items: center;
+  justify-content: center;
 }
 
-.type {
-  font-family: 'Poppins';
+.tab-main-title {
+  font-family: 'Noto Sans';
   font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 22px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
   /* identical to box height */
 
 
-  color: #A9A9A9;
-
+  color: #131C33;
 }
 
-.question {
+.dashboard-main-view {
+  width: 1101px;
+  height: 600px;
+}
 
-  font-family: 'Poppins';
+.tabs {
+  margin-top: 60px;
+}
+
+.tabs .sub-tab-title {
+  margin-left: 170px;
+  font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 500;
-  font-size: 22px;
-  line-height: 48px;
-  /* identical to box height */
-  text-align: center;
-  width: 550px;
-  color: #6A6A6A;
-
-}
-
-.punchline {
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 36px;
-  /* identical to box height */
-  text-align: center;
-  color: #000000;
-}
-
-.nextbtn {
-  align-items: center;
-  width: 280px;
-  height: 46px;
-  text-align: center;
-  background: #66bfbfdf;
-  border-radius: 5px;
-  border-color: transparent;
-  color: #FFFFFF;
+  font-size: 14px;
+  line-height: 19px;
   cursor: pointer;
-  font-family: 'Poppins';
+
+}
+
+.tab-title {
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+
+
+  color: #131C33;
+}
+
+.tabs .sub-tab-title:first-child {
+  margin-left: 0px;
+}
+
+.line-container {
+  margin-top: 20px;
+}
+
+.selected-tab {
+  margin-top: 11px;
+  display: block;
+  position: absolute;
+  width: 10%;
+  border-top: 3px solid #179C8C;
+}
+
+.disabled {
+  color: #999;
+}
+
+.data-titles {
+  margin-top: 45px;
+  margin-left: 220px;
+}
+
+.info-title {
+  margin-left: 120px;
+  font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #999999;
+
 }
 
-.nextbtn:hover {
-  background: #66BFBF;
-  letter-spacing: 2px;
+.info-title:first-child {
+  margin: 0;
 }
 
-.btn {
+.patient-details-comp {
+  margin-top: 20px;
+  height: 400px;
+  overflow: auto;
+}
 
-  display: flex;
-  justify-content: center;
+li {
+  margin-top: 10px;
+  list-style: none;
+
+
+}
+
+ul {
+  padding: 0 !important;
+}
+
+li:first-child {
+  margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(189, 189, 189);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #363636;
+}
+
+a {
+  text-decoration: none;
+}
+
+svg:hover{
+  fill: #179C8C;
+  
 }
 </style>
