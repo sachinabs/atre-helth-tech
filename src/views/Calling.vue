@@ -1,14 +1,31 @@
 <template>
-    <div class="session-continer">
 
-        <div class="session-main">
-            <div class="video-continer">
-                <div class="video">
-                   <p>span</p>
-                </div>
+    <div class="wrapper animate__animated  animate__slideInUp animate__faster">
+        <div class="continer">
+            <div class="inside-box">
+                <p>-- Connecting --</p>
             </div>
+
         </div>
+        <div class="action-buttons">
+
+            <div @click="popTheMessageBox()" class="message-to-hub">
+                <img class="animate__animated animate__rubberBand animate__delay-1s"
+                    src="../assets/icons/mdi_message-group.svg" alt="" srcset="">
+                <span class="rol">Message to Hub</span>
+            </div>
+
+            <router-link :to="'/call'">
+                <div class="call-to-hub call-hang ">
+                    <img class="animate__animated animate__rubberBand animate__delay-2s"
+                        src="../assets/icons/Vector (1).svg" alt="" srcset="">
+                    <span class="rol">End the call</span>
+                </div>
+            </router-link>
+        </div>
+
     </div>
+
 </template>
 
 <script >
@@ -39,22 +56,26 @@ export default {
 
 
 <style>
-.session-main {}
+/* test css */
 
-.video-continer {
+
+.inside-box {
     display: flex;
-}
-
-.video span {
-    display: block;
-}
-
-.video {
-    display: flex;
-    height: 470px;
-    width: 600px;
-    background-color: greenyellow;
-    text-align: center;
+    background-color: rgba(217, 217, 217, 0.4);
+    border-radius: 21px;
+    width: 1313px;
+    height: 654px;
     justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.call-hang {
+    background-color: #D94D46;
+}
+
+.call-hang:hover {
+    background-color: #fa3a30;
 }
 </style>

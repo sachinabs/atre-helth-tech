@@ -54,21 +54,21 @@
                     </div>
                 </div>
                 <div class="action-buttons">
-                    
-                        <div @click="popTheMessageBox()" class="message-to-hub">
-                            <img class="animate__animated animate__rubberBand animate__delay-1s"
-                                src="../assets/icons/mdi_message-group.svg" alt="" srcset="">
-                            <span class="rol">Message to Hub</span>
-                        </div>
-                    
+
+                    <div @click="popTheMessageBox()" class="message-to-hub">
+                        <img class="animate__animated animate__rubberBand animate__delay-1s"
+                            src="../assets/icons/mdi_message-group.svg" alt="" srcset="">
+                        <span class="rol">Message to Hub</span>
+                    </div>
+
                     <router-link :to="'/call'">
                         <div class="call-to-hub">
-                        <img class="animate__animated animate__rubberBand animate__delay-2s"
-                            src="../assets/icons/Vector (1).svg" alt="" srcset="">
-                        <span class="rol">Call Now</span>
-                    </div>
+                            <img class="animate__animated animate__rubberBand animate__delay-2s"
+                                src="../assets/icons/Vector (1).svg" alt="" srcset="">
+                            <span class="rol">Call Now</span>
+                        </div>
                     </router-link>
-                    
+
                 </div>
             </div>
         </div>
