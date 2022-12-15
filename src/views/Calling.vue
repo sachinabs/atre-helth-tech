@@ -46,19 +46,50 @@
                         <span class="data-title">Focus - y</span>
                     </div>
                     <div class="robo-data-value">
-                        <span class="data-title-data-value">Ultra Sound</span>
-                        <span class="data-title-data-value">A-6</span>
-                        <span class="data-title-data-value">5</span>
-                        <span class="data-title-data-value">Auto</span>
-                        <span class="data-title-data-value">13.08</span>
-                        <span class="data-title-data-value">yes</span>
-                        <span class="data-title-data-value">- </span>
+                        <span class="data-title-data-value-type">Ultra Sound</span>
+                        <span class="data-title-data-value-gain">A-6</span>
+                        <span class="data-title-data-value-zoom">5</span>
+                        <span class="data-title-data-value-mode">Auto</span>
+                        <span class="data-title-data-value-depth">13.08</span>
+                        <span class="data-title-data-value-x">yes</span>
+                        <span class="data-title-data-value-y">- </span>
                     </div>
                 </div>
             </div>
             <div class="player-control">
                 <div class="screen-snap">
+                    <div class="player-control">
+                        <div class="screen-snap">
+                            <svg width="44" height="46" viewBox="0 0 44 46" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M27.4998 30.6667H34.8332V23H32.0832V27.7917H27.4998V30.6667ZM9.1665 19.1667H11.9165V14.375H16.4998V11.5H9.1665V19.1667ZM14.6665 40.25V36.4167H7.33317C6.32484 36.4167 5.46195 36.0416 4.7445 35.2916C4.02584 34.5402 3.6665 33.6375 3.6665 32.5833V9.58333C3.6665 8.52917 4.02584 7.62642 4.7445 6.87508C5.46195 6.12503 6.32484 5.75 7.33317 5.75H36.6665C37.6748 5.75 38.5383 6.12503 39.257 6.87508C39.9744 7.62642 40.3332 8.52917 40.3332 9.58333V32.5833C40.3332 33.6375 39.9744 34.5402 39.257 35.2916C38.5383 36.0416 37.6748 36.4167 36.6665 36.4167H29.3332V40.25H14.6665ZM7.33317 32.5833H36.6665V9.58333H7.33317V32.5833ZM7.33317 32.5833V9.58333V32.5833Z"
+                                    fill="#666464" />
+                            </svg>
 
+                        </div>
+                        <div class="more-control">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 21L0 9C1.6 7.36667 3.43333 6.125 5.5 5.275C7.56667 4.425 9.73333 4 12 4C14.2833 4 16.4583 4.425 18.525 5.275C20.5917 6.125 22.4167 7.36667 24 9L12 21ZM7.475 13.625C8.10833 13.1583 8.80833 12.7957 9.575 12.537C10.3417 12.279 11.15 12.15 12 12.15C12.85 12.15 13.6583 12.279 14.425 12.537C15.1917 12.7957 15.8917 13.1583 16.525 13.625L21.1 9.05C19.8 8.06667 18.3793 7.31233 16.838 6.787C15.296 6.26233 13.6833 6 12 6C10.3167 6 8.704 6.26233 7.162 6.787C5.62067 7.31233 4.2 8.06667 2.9 9.05L7.475 13.625Z"
+                                    fill="#666464" />
+                            </svg>
+                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2 7.10357V2.02954H7M22 7.10357V2.02954H17M7 22.3256H2V17.2516M17 22.3256H22V17.2516"
+                                    stroke="#666464" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <svg width="24" height="27" viewBox="0 0 24 27" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14 6.50938C14 5.316 13.1 4.3396 12 4.3396C10.9 4.3396 10 5.316 10 6.50938C10 7.70277 10.9 8.67917 12 8.67917C13.1 8.67917 14 7.70277 14 6.50938ZM14 19.5281C14 18.3347 13.1 17.3583 12 17.3583C10.9 17.3583 10 18.3347 10 19.5281C10 20.7215 10.9 21.6979 12 21.6979C13.1 21.6979 14 20.7215 14 19.5281ZM14 13.0187C14 11.8254 13.1 10.849 12 10.849C10.9 10.849 10 11.8254 10 13.0187C10 14.2121 10.9 15.1885 12 15.1885C13.1 15.1885 14 14.2121 14 13.0187Z"
+                                    fill="#666464" />
+                            </svg>
+
+                        </div>
+                    </div>
                 </div>
                 <div class="more-control">
 
@@ -138,6 +169,7 @@ video.fillWidth {
 
 .info-pin {
     margin-left: 100px;
+    cursor: pointer;
 }
 
 .user-name-mini {
@@ -153,14 +185,16 @@ video.fillWidth {
 .robo-status-continer {
     width: 907px;
     /* height: 154px; */
-    padding: 10px;
+    padding: 20px;
     margin-left: 20px;
     margin-top: 400px;
     background: #FFFFFF;
     border-radius: 10px;
 }
 
-.status-continer {}
+.status-continer {
+    display: flex;
+}
 
 .data-title-data-value {}
 
@@ -185,12 +219,62 @@ video.fillWidth {
     font-weight: 300;
     font-size: 12px;
     line-height: 16px;
-margin-left: 80px;
     color: #000000;
 }
 
 .robo-data-title span:first-child,
 .robo-data-value span:first-child {
     margin: 0;
+}
+
+.robo-title {
+    width: 900px;
+
+}
+
+.robo-name {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height */
+
+
+    color: #000000;
+
+}
+
+.info-edit {
+    margin-left: 730px;
+    cursor: pointer;
+}
+
+.data-title-data-value-gain {
+    margin-left: 74px;
+}
+
+.data-title-data-value-zoom {
+    margin-left: 74px;
+}
+
+.data-title-data-value-mode {
+    margin-left: 140px;
+}
+
+.data-title-data-value-depth {
+    margin-left: 140px;
+}
+
+.data-title-data-value-x {
+    margin-left: 80px;
+}
+
+.data-title-data-value-y {
+    margin-left: 108px;
+}
+
+.wrap {
+    width: 100vw;
 }
 </style>
