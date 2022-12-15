@@ -1,0 +1,21 @@
+{
+    "user_name":"Rhonda Heath",
+    "robo_name":"DOOSAN - A0509",
+    "robo_data":{
+        "robo_gain":"A-6",
+        "robo_zoom_leve":"5",
+        "robo_mode":"Auto",
+        "robo_depth":13.08,
+        "robo_focus_x":"yes",
+        "robo_focus_y":""
+    },
+    "responce":[{
+        "patient_end":true,
+        "user_name":"Rhonda Heath",
+        "message":"Doctor can you see the screen ??"
+    },{
+        "patient_end":false,
+        "user_name":"Dr. CharuLatha",
+        "message":"I think its a network issue ..."
+    }]
+}
