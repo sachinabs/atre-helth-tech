@@ -23,9 +23,20 @@
       </div>
       <div class="patient-details-comp">
         <ul>
-          <li v-for="index in 10" :key="index">
-            <router-link :to="'user/' + key">
-              <PatientDetails />
+          <li v-for="pat in listOfUser" :key=pat.id>
+            <router-link :to="'user/id=' + pat.id">
+              <!-- {{ pat }} -->
+              <div class="patients-details-container">
+                <div class="patient-details">
+                  <span class="snum"> {{ pat.data.user_id }}</span>
+                  <span class="user-img"> <img class="tum-img" :src=pat.data.user_data.img alt=""></span>
+                  <span class="user-name"> {{ pat.data.user_name }}</span>
+                  <span class="user-id"> {{ pat.data.p_id }}</span>
+                  <span class="user-location"> {{ pat.data.user_data.location }}</span>
+                  <span class="user-appointment-date"> {{ pat.data.appoinment }}</span>
+                  <!-- <span class="user-appointment-time"> 10:30 AM</span> -->
+                </div>
+              </div>
             </router-link>
           </li>
         </ul>
@@ -37,12 +48,12 @@
 <script >
 
 import PatientDetails from '../components/widgets/PatientsDetails.vue'
-
+import axios from 'axios';
 export default {
   name: "Dashboard",
   data: function () { //sate data
     return {
-
+      listOfUser: ''
     };
   },
   props: { //get the value through the props from another component
@@ -54,8 +65,13 @@ export default {
     }
 
   },
-  created: function () {
+  created: async function () {
+    // http://127.0.0.1:5173/
+    var dataUri = "http://localhost:9000/";
 
+    var dataFromUri = await axios.get(dataUri);
+    this.listOfUser = dataFromUri.data
+    console.log(dataFromUri.data);
   },
   components: {
     PatientDetails
@@ -65,6 +81,12 @@ export default {
 
 
 <style>
+.tum-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -209,8 +231,8 @@ a {
   text-decoration: none;
 }
 
-svg:hover{
+svg:hover {
   fill: #179C8C;
-  
+
 }
 </style>

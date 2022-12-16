@@ -27,6 +27,8 @@ export default {
         };
     },
     props: { //get the value through the props from another component
+        sno: "",
+        img_src: "",
 
     },
     methods: { // functions for the component
@@ -75,18 +77,18 @@ export default {
 }
 
 .user-id {
-    margin-left: 92px;
+    margin-left: 149px;
 }
 
 .user-location {
-    margin-left: 127px;
+    margin-left: 147px;
 }
 
 .user-appointment-date {
-    margin-left: 104px;
+    margin-left: 150px;
 }
 
 .user-appointment-time {
-    margin-left: 15px;
+    margin-left: 149px;
 }
 </style>
