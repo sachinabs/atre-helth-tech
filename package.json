@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "axios": "^1.2.0",
+    "dom-to-image": "^2.6.0",
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
+    "vue-html2canvas": "^0.0.4",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

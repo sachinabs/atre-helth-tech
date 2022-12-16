@@ -11,7 +11,7 @@ import { UserService } from "../services/services"
 
 
 export default {
-    name: "Chat",
+    name: "Chater",
     data: function () { //sate data
         return {
            
