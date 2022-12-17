@@ -23,18 +23,18 @@
       </div>
       <div class="patient-details-comp">
         <ul>
-          <li v-for="pat in listOfUser" :key=pat.id>
-            <router-link :to="'user/id=' + pat.id">
-              <!-- {{ pat }} -->
+          <li v-for="pat in listOfUser.data" :key=pat.user_id>
+            <router-link :to="'user/id=' + pat.user_id">
+              
               <div class="patients-details-container">
                 <div class="patient-details">
-                  <span class="snum"> {{ pat.data.user_id }}</span>
-                  <span class="user-img"> <img class="tum-img" :src=pat.data.user_data.img alt=""></span>
-                  <span class="user-name"> {{ pat.data.user_name }}</span>
-                  <span class="user-id"> {{ pat.data.p_id }}</span>
-                  <span class="user-location"> {{ pat.data.user_data.location }}</span>
-                  <span class="user-appointment-date"> {{ pat.data.appoinment }}</span>
-                  <!-- <span class="user-appointment-time"> 10:30 AM</span> -->
+                  <span class="snum"> {{ pat.user_id }}</span>
+                  <span class="user-img"> <img class="tum-img" :src=pat.img alt=""></span>
+                  <span class="user-name"> {{ pat.user_name }}</span>
+                  <span class="user-id"> {{ pat.p_id }}</span>
+                  <span class="user-location"> {{ pat.location }}</span>
+                  <span class="user-appointment-date"> {{ pat.appoinment }}</span>
+                  
                 </div>
               </div>
             </router-link>
@@ -67,11 +67,17 @@ export default {
   },
   created: async function () {
     // http://127.0.0.1:5173/
-    var dataUri = "http://localhost:9000/";
+    // var dataUri = "http://localhost:9000/";
 
-    var dataFromUri = await axios.get(dataUri);
-    this.listOfUser = dataFromUri.data
-    console.log(dataFromUri.data);
+    // var dataFromUri = await axios.get(dataUri);
+    // this.listOfUser = dataFromUri.data
+    // console.log(dataFromUri.data);
+
+
+    const sqldb = "http://localhost:9000/api/sql/getAllUser"
+    var dataFromSql = await axios.get(sqldb)
+    console.log(dataFromSql.data );
+    this.listOfUser = dataFromSql
   },
   components: {
     PatientDetails

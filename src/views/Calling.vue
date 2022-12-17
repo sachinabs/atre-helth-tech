@@ -1,7 +1,7 @@
 <template>
 
     <div class="header-unit">
-        <div id="video-container"  ref="printMe" class="printMe">
+        <div id="video-container" ref="printMe" class="printMe">
             <video class="fillWidth" autoplay loop> //
                 <source src="../assets/video.mp4" type='video/webm' />
             </video>
@@ -32,13 +32,13 @@
                         <span class="data-title">Focus - y</span>
                     </div>
                     <div class="robo-data-value">
-                        <span class="data-title-data-value-scan">Ultra Sound</span>
-                        <span class="data-title-data-value-gain">A-6</span>
-                        <span class="data-title-data-value-zoom">5</span>
-                        <span class="data-title-data-value-mode">Auto</span>
-                        <span class="data-title-data-value-depth">13.08</span>
-                        <span class="data-title-data-value-x">yes</span>
-                        <span class="data-title-data-value-y">- </span>
+                        <span class="data-title-data-value-scan">{{robo_data[0].scan_type}}</span>
+                        <span class="data-title-data-value-gain">{{robo_data[0].gain}}</span>
+                        <span class="data-title-data-value-zoom">{{robo_data[0].zoom_level}}</span>
+                        <span class="data-title-data-value-mode">{{robo_data[0].system_mode}}</span>
+                        <span class="data-title-data-value-depth">{{robo_data[0].depth}}</span>
+                        <span class="data-title-data-value-x">{{robo_data[0].x}}</span>
+                        <span class="data-title-data-value-y">{{robo_data[0].y}}</span>
 
                     </div>
                 </div>
@@ -66,7 +66,7 @@
         </div>
         <div class="tools">
             <div class="tool">
-                <button @click="wholePage()" id="save"> <svg width="41" height="45" viewBox="0 0 44 46" fill="none"
+                <button @click="takesnap()" id="save"> <svg width="41" height="45" viewBox="0 0 44 46" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M27.4998 30.6667H34.8332V23H32.0832V27.7917H27.4998V30.6667ZM9.1665 19.1667H11.9165V14.375H16.4998V11.5H9.1665V19.1667ZM14.6665 40.25V36.4167H7.33317C6.32484 36.4167 5.46195 36.0416 4.7445 35.2916C4.02584 34.5402 3.6665 33.6375 3.6665 32.5833V9.58333C3.6665 8.52917 4.02584 7.62642 4.7445 6.87508C5.46195 6.12503 6.32484 5.75 7.33317 5.75H36.6665C37.6748 5.75 38.5383 6.12503 39.257 6.87508C39.9744 7.62642 40.3332 8.52917 40.3332 9.58333V32.5833C40.3332 33.6375 39.9744 34.5402 39.257 35.2916C38.5383 36.0416 37.6748 36.4167 36.6665 36.4167H29.3332V40.25H14.6665ZM7.33317 32.5833H36.6665V9.58333H7.33317V32.5833ZM7.33317 32.5833V9.58333V32.5833Z"
@@ -108,7 +108,7 @@
 import { UserService } from "../services/services"
 import ChatBox from "../components/ChatBox.vue"
 import html2canvas from 'html2canvas';
-import domtoimage from 'dom-to-image';
+import axios from 'axios';
 export default {
     name: "Call",
     data: function () { //sate data
@@ -118,7 +118,8 @@ export default {
             "mainVideo": "../assets/video.mp4",
             "clientVideo": "../assets/pexels-mikhail-nilov-7682755.mp4",
             "showChat": false,
-            "sessionSaved": false
+            "sessionSaved": false,
+            "robo_data":""
         };
     },
     props: { //get the value through the props from another component
@@ -126,20 +127,57 @@ export default {
     },
     methods: { // functions for the component
         wholePage: async function () {
-            console.log("working");
-            this.snaped = true
-            // let el = this.$refs.printMe.$el;
-            // this.output = (await html2canvas(el)).toDataURL();
-            // html2canvas(document.querySelector('.printMe'), {
-            //     onrendered: function (canvas) {
-            //         console.log(canvas);
-            //         return Canvas2Image.saveAsPNG(canvas);
-            //     }
-            // });
+     
+            let el = this.$refs.printMe.$el;
+            this.output = (await html2canvas(el)).toDataURL();
+            html2canvas(document.querySelector('.printMe'), {
+                onrendered: function (canvas) {
+                    console.log(canvas);
+                    return Canvas2Image.saveAsPNG(canvas);
+                }
+            });
             domtoimage.toBlob(document.getElementById('video-container'))
                 .then(function (blob) {
                     window.saveAs(blob, 'my-node.png');
                 });
+        },
+
+        takesnap: function () {
+            console.log("working");
+            this.snaped = true
+            const ele = document.querySelector(".printMe"); //wrap
+            html2canvas(ele).then(function (canvas) {
+                console.log(canvas);
+                const fileName = Math.floor(Math.random() * 999);
+                simulateDownloadImageClick(canvas.toDataURL(), `live${fileName}`);
+            });
+
+
+            function simulateDownloadImageClick(uri, filename) {
+
+                var link = document.createElement('a');
+                if (typeof link.download !== 'string') {
+                    window.open(uri);
+                } else {
+                    link.href = uri;
+                    link.download = filename;
+                    link.locat
+                    accountAndLoad(clickLink, link);
+                }
+            }
+
+            function clickLink(link) {
+                link.click();
+            }
+
+            function accountAndLoad(click) { // wrapper function
+                let link = arguments[1];
+                document.body.appendChild(link);
+                click(link);
+                document.body.removeChild(link);
+                this.snaped = false
+            }
+            
         },
         closeNotification: function () {
 
@@ -157,6 +195,13 @@ export default {
 
     },
     created: async function () {
+        var dataUri = "http://localhost:9000/api/sql/getRobo/R001";
+       
+        var dataFromUri = await axios.get(dataUri);
+        console.log(dataFromUri.data);
+        this.robo_data = dataFromUri.data
+
+        console.log(dataFromUri.data[0].scan_type);
 
     },
     components: {

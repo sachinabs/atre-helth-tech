@@ -2,42 +2,41 @@
     <div class="dashboard-container animate__animated  animate__slideInRight animate__faster	100ms">
         <div class="patient-details-main-view">
             <div class="tab-title">
-
                 <span class="tab-main-title">Patient Details</span>
                 <!-- <span class="title">{{ $route.name }}</span> -->
             </div>
             <div class="patient-details-continer">
                 <div class="patient-img">
-                    <img class="over-img" :src=data.data.user_data.img alt="">
+                    <img class="over-img" :src=data.img alt="">
                 </div>
                 <div class="patient-details-menu">
                     <div class="patient-text-details">
                         <div class="line-1">
                             <span class="line-1-span">
                                 <span class="p-name title">Name :</span>
-                                <span class="p-name title-data"> &nbsp {{ data.data.user_name }}</span>
+                                <span class="p-name title-data"> &nbsp {{ data.user_name }}</span>
                             </span>
                             <span class="line-1-span">
                                 <span class="p-gender title">Gender :</span>
-                                <span class="p-gender title-data"> &nbsp {{ data.data.user_data.gender }}</span>
+                                <span class="p-gender title-data"> &nbsp {{ data.gender }}</span>
                             </span>
                             <span class="line-1-span">
                                 <span class="p-age title">Age :</span>
-                                <span class="p-age title-data"> &nbsp {{ data.data.user_data.age }}</span>
+                                <span class="p-age title-data"> &nbsp {{ data.age }}</span>
                             </span>
                         </div>
                         <div class="line-2">
                             <span class="line-2-span">
                                 <span class="p-location title">Location :</span>
-                                <span class="p-location title-data"> &nbsp {{ data.data.user_data.location }}</span>
+                                <span class="p-location title-data"> &nbsp {{ data.location }}</span>
                             </span>
                             <span class="line-2-span">
                                 <span class="p-contact title">Contact :</span>
-                                <span class="p-contact title-data">&nbsp {{ data.data.user_data.contact }}</span>
+                                <span class="p-contact title-data">&nbsp {{ data.contact }}</span>
                             </span>
                             <span class="line-2-span">
                                 <span class="p-ID title">Patient ID :</span>
-                                <span class="p-ID title-data">&nbsp {{ data.data.p_id }}</span>
+                                <span class="p-ID title-data">&nbsp {{ data.p_id }}</span>
                             </span>
                         </div>
                     </div>
@@ -100,22 +99,41 @@ export default {
     },
     created: async function () {
         // console.log(this.$router.name);
-        var dataUri = "http://localhost:9000/";
+
+        // const sqldb = "http://localhost:9000/api/sql/getAllUser"
+        // var dataFromSql = await axios.get(sqldb)
+        // console.log(dataFromSql.data);
+        // this.listOfUser = dataFromSql
+
+
+        // var dataUri = "http://localhost:9000/";
+        var dataUri = "http://localhost:9000/api/sql/getAllUser";
         const id = window.location.href
 
         const find = id.split("=")[1]
         var dataFromUri = await axios.get(dataUri);
+        console.log(dataFromUri.data);
 
         for (let index = 0; index < dataFromUri.data.length; index++) {
-
-            console.log(`fromdb${dataFromUri.data[index].id} -- ${find}`);
-            if (dataFromUri.data[index].id == find) {
+            const element = dataFromUri.data[index];
+            console.log(element.user_id);
+            if (element.user_id == find) {
                 this.data = dataFromUri.data[index]
 
+                console.log(dataFromUri.data[index]);
             }
-
-
+            
         }
+        // for (let index = 0; index < dataFromUri.data.length; index++) {
+
+        //     console.log(`fromdb${dataFromUri.data[index].id} -- ${find}`);
+        //     if (dataFromUri.data[index].id == find) {
+        //         this.data = dataFromUri.data[index]
+
+        //     }
+
+
+        // }
         // this.listOfUser = dataFromUri.data
         // console.log(dataFromUri.data);
     },
