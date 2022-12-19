@@ -16,12 +16,12 @@ const router = createRouter({
     {
       path: '/history',
       name: 'History',
-      component: History
+      component: Dashboard
     },
     {
       path: '/chat',
       name: 'Chat',
-      component: Chat
+      component: Dashboard
     },
     {
       path: '/user/:userId',

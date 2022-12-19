@@ -168,6 +168,7 @@ export default {
                 inputNode[index].remove();
                 this.inputer = false;
             }
+            const serialNumber = Math.floor(Math.random()*90)
             let article = {
                 "d_id": "10",
                 "gain": updatedValues[0],
@@ -177,7 +178,7 @@ export default {
                 "x": updatedValues[4],
                 "y": updatedValues[5],
                 "robo_id": "R001",
-                "s_num": 1
+                "s_num": serialNumber
             }
 
             const response = await axios.post("http://localhost:9000/api/sql/updateRoboParam/", article);
